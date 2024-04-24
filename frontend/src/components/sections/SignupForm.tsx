@@ -19,44 +19,26 @@ import {
    FormLabel,
    FormMessage,
 } from '@/components/ui/form';
+import { SIGNUP_FORM_INITIAL_VALUES, SIGNUP_FORM_SCHEMA } from '@/lib/config';
 
 function SignupForm() {
-   const formSchema = z.object({
-      firstName: z.string().min(1, {
-         message: 'First name is required.',
-      }),
-      lastName: z.string().min(1, {
-         message: 'Last name is required.',
-      }),
-      email: z
-         .string()
-         .min(1, { message: 'Email is required!' })
-         .email('Please enter valid email!'),
-      password: z
-         .string()
-         .min(6, { message: 'Password must be atleast 6 characters long!' }),
-      cnfPassword: z.string()
-   }).refine(data => data.password === data.cnfPassword, {
-      message: 'Must be equal to password entered above!',
-      path: ['cnfPassword'],
-   });;
+   const formSchema = z
+      .object(SIGNUP_FORM_SCHEMA)
+      .refine((data) => data.password === data.cnfPassword, {
+         message: 'Must be equal to password entered above!',
+         path: ['cnfPassword'],
+      });
 
    const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),
-      defaultValues: {
-         firstName: '',
-         lastName: '',
-         email: '',
-         password: '',
-         cnfPassword: ''
-      },
+      defaultValues: SIGNUP_FORM_INITIAL_VALUES,
    });
 
    function onSubmit(values: z.infer<typeof formSchema>) {
       console.log(values);
    }
    return (
-      <Card className="mx-auto max-w-sm">
+      <Card className="max-w-sm w-full">
          <CardHeader>
             <CardTitle className="text-xl">Sign Up</CardTitle>
             <CardDescription>
@@ -122,10 +104,10 @@ function SignupForm() {
                            <FormLabel>Password</FormLabel>
                            <FormControl>
                               <Input
-                                 placeholder="password"
+                                 placeholder="Password"
                                  type="password"
                                  {...field}
-                                 autoComplete='new-password'
+                                 autoComplete="new-password"
                               />
                            </FormControl>
                            <FormMessage />
@@ -156,7 +138,7 @@ function SignupForm() {
             </Form>
             <div className="mt-4 text-center text-sm">
                Already have an account?{' '}
-               <Link to="/login" className="underline">
+               <Link to="/auth/login" className="underline">
                   Sign in
                </Link>
             </div>

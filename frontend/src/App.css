@@ -1,3 +1,26 @@
-.gradiant-bg {
-    background: linear-gradient(45deg, #d1cfdf, #baa4c4);
+.ld-gradiant-bg {
+    background: linear-gradient(239deg, #a093b2d5, #765d8e7c, #7b346677);
+}
+
+.ld-gradiant-bg.ld-animate {
+    background-size: 600% 600%;
+    -webkit-animation: GradiantMotion 10s ease infinite;
+    -moz-animation: GradiantMotion 10s ease infinite;
+    animation: GradiantMotion 10s ease infinite;
+}
+
+@-webkit-keyframes GradiantMotion {
+    0%{background-position:0% 52%}
+    50%{background-position:100% 49%}
+    100%{background-position:0% 52%}
+}
+@-moz-keyframes GradiantMotion {
+    0%{background-position:0% 52%}
+    50%{background-position:100% 49%}
+    100%{background-position:0% 52%}
+}
+@keyframes GradiantMotion {
+    0%{background-position:0% 52%}
+    50%{background-position:100% 49%}
+    100%{background-position:0% 52%}
 }
