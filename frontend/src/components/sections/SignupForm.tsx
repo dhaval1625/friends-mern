@@ -8,14 +8,12 @@ import {
    CardTitle,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import {
    Form,
    FormControl,
-   FormDescription,
    FormField,
    FormItem,
    FormLabel,
@@ -37,7 +35,11 @@ function SignupForm() {
       password: z
          .string()
          .min(6, { message: 'Password must be atleast 6 characters long!' }),
-   });
+      cnfPassword: z.string()
+   }).refine(data => data.password === data.cnfPassword, {
+      message: 'Must be equal to password entered above!',
+      path: ['cnfPassword'],
+   });;
 
    const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),
@@ -46,6 +48,7 @@ function SignupForm() {
          lastName: '',
          email: '',
          password: '',
+         cnfPassword: ''
       },
    });
 
@@ -120,6 +123,24 @@ function SignupForm() {
                            <FormControl>
                               <Input
                                  placeholder="password"
+                                 type="password"
+                                 {...field}
+                                 autoComplete='new-password'
+                              />
+                           </FormControl>
+                           <FormMessage />
+                        </FormItem>
+                     )}
+                  />
+                  <FormField
+                     control={form.control}
+                     name="cnfPassword"
+                     render={({ field }) => (
+                        <FormItem>
+                           <FormLabel>Confirm Password</FormLabel>
+                           <FormControl>
+                              <Input
+                                 placeholder="Confirm password"
                                  type="password"
                                  {...field}
                               />
