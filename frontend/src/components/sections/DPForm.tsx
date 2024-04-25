@@ -15,11 +15,15 @@ import { FaArrowRightLong } from 'react-icons/fa6';
 import { FileUploader } from 'react-drag-drop-files';
 import { FileInput } from '../ui/input';
 import { LoadingMessage } from '../ui/loading';
+import { ACCEPTED_IMAGE_FILE_TYPES } from '@/lib/config';
+import { useToast } from "@/components/ui/use-toast"
 
 function DPForm() {
    const [dpURL, setDpURL] = useState<null | string>(null);
    const [uploadedImg, setUploadedImg] = useState<string>('');
    const [isImageUploading, setIsImageUploading] = useState(false);
+
+   const { toast } = useToast()
 
    async function handleImageUpload(file: File) {
       // display uploaded image on avatar
@@ -43,6 +47,8 @@ function DPForm() {
          </CardHeader>
          <CardContent className="space-y-4">
             <FileUploader
+               types={ACCEPTED_IMAGE_FILE_TYPES}
+               onTypeError={(err: any) => toast({description: err, variant: 'destructive'})}
                handleChange={handleImageUpload}
                name="profile-picture"
                dropMessageStyle={{

@@ -2,12 +2,14 @@ import './App.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Signup from './pages/Signup';
 import AuthLayout from './components/layouts/AuthLayout';
-import Login from './pages/Login';
+import Login from './pages/Login'
+import Feed from './pages/Feed';
+import NotFound from './pages/NotFound';
 
 function App() {
    const router = createBrowserRouter([
       {
-         path: 'auth',
+         path: '/auth',
          element: <AuthLayout />,
          children: [
             {
@@ -20,6 +22,16 @@ function App() {
             },
          ],
       },
+      {
+         path: '/',
+         errorElement: <NotFound />,
+         children: [
+            {
+               path: '',
+               element: <Feed />
+            }
+         ]
+      }
    ]);
 
    return <RouterProvider router={router} />;

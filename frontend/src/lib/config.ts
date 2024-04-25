@@ -24,3 +24,12 @@ export const SIGNUP_FORM_INITIAL_VALUES = {
    password: '',
    cnfPassword: '',
 };
+
+export const ACCEPTED_IMAGE_FILE_TYPES = [
+   'JPG',
+   'PNG',
+   'GIF',
+   'JPEG',
+   'SVG',
+   'WebP',
+];

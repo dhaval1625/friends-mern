@@ -63,6 +63,7 @@ function LoginForm() {
                                  placeholder="john@doe.com"
                                  type="email"
                                  {...field}
+                                 autoComplete='username'
                               />
                            </FormControl>
                            <FormMessage />
@@ -88,7 +89,7 @@ function LoginForm() {
                      )}
                   />
                   <Button type="submit" className="w-full">
-                     Create an account
+                     Login
                   </Button>
                </form>
             </Form>
