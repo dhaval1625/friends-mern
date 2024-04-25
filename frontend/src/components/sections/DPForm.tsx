@@ -9,13 +9,13 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import TextSecondary from '../Typography/TextSecondary';
 import { BiUser } from 'react-icons/bi';
 import { cn, fileHandler, uploadImageOnCloud } from '@/lib/utils';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Button } from '../ui/button';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { FileUploader } from 'react-drag-drop-files';
+import { FileInput } from '../ui/input';
 
 function DPForm() {
-   const fileInputRef = useRef<HTMLInputElement>(null);
    const [dpURL, setDpURL] = useState<null | string>(null);
    const [uploadedImg, setUploadedImg] = useState<string>('');
 
@@ -41,7 +41,13 @@ function DPForm() {
             <FileUploader
                handleChange={handleImageUpload}
                name="profile-picture"
-               dropMessageStyle={{color: 'white', backgroundColor: '#4040409c', fontWeight: 700, fontSize: '1.2rem', opacity: 1}}
+               dropMessageStyle={{
+                  color: 'white',
+                  backgroundColor: '#4040409c',
+                  fontWeight: 700,
+                  fontSize: '1.2rem',
+                  opacity: 1,
+               }}
             >
                <div
                   className={cn(
@@ -61,17 +67,7 @@ function DPForm() {
                   </TextSecondary>
                </div>
             </FileUploader>
-            <input
-               onChange={(e) =>
-                  e.target.files && handleImageUpload(e.target.files[0])
-               }
-               ref={fileInputRef}
-               type="file"
-               id="profile-picture"
-               className="hidden"
-               hidden
-               accept="image/*"
-            />
+            <FileInput handler={handleImageUpload} id="profile-picture" />
             <div className="flex justify-between items-center mt-4">
                <Button>Continue</Button>
                <Button variant="ghost">
