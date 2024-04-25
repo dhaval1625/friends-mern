@@ -20,8 +20,13 @@ import {
    FormMessage,
 } from '@/components/ui/form';
 import { SIGNUP_FORM_INITIAL_VALUES, SIGNUP_FORM_SCHEMA } from '@/lib/config';
+import { SignupData } from '@/lib/definitions';
 
-function SignupForm() {
+interface SignupProps {
+   onSubmit: (data: SignupData) => void;
+}
+
+function SignupForm({ onSubmit }: SignupProps) {
    const formSchema = z
       .object(SIGNUP_FORM_SCHEMA)
       .refine((data) => data.password === data.cnfPassword, {
@@ -34,9 +39,6 @@ function SignupForm() {
       defaultValues: SIGNUP_FORM_INITIAL_VALUES,
    });
 
-   function onSubmit(values: z.infer<typeof formSchema>) {
-      console.log(values);
-   }
    return (
       <Card className="max-w-sm w-full">
          <CardHeader>
@@ -48,7 +50,9 @@ function SignupForm() {
          <CardContent>
             <Form {...form}>
                <form
-                  onSubmit={form.handleSubmit(onSubmit)}
+                  onSubmit={form.handleSubmit(
+                     (values: z.infer<typeof formSchema>) => onSubmit(values)
+                  )}
                   className="grid gap-4"
                >
                   <div className="grid grid-cols-2 gap-4">
@@ -89,6 +93,7 @@ function SignupForm() {
                               <Input
                                  placeholder="john@doe.com"
                                  type="email"
+                                 autoComplete='username'
                                  {...field}
                               />
                            </FormControl>
@@ -124,6 +129,7 @@ function SignupForm() {
                               <Input
                                  placeholder="Confirm password"
                                  type="password"
+                                 autoComplete='new-password'
                                  {...field}
                               />
                            </FormControl>
