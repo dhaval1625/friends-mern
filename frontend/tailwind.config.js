@@ -17,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["Plus Jakarta Sans", 'sans-serif']
+      },
       colors: {
         neutral: {
           900: '#312941',
