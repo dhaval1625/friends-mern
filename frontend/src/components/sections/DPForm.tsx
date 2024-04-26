@@ -16,14 +16,12 @@ import { FileUploader } from 'react-drag-drop-files';
 import { FileInput } from '../ui/input';
 import { LoadingMessage } from '../ui/loading';
 import { ACCEPTED_IMAGE_FILE_TYPES } from '@/lib/config';
-import { useToast } from "@/components/ui/use-toast"
+import { toast } from "@/components/ui/use-toast"
 
 function DPForm() {
    const [dpURL, setDpURL] = useState<null | string>(null);
    const [uploadedImg, setUploadedImg] = useState<string>('');
    const [isImageUploading, setIsImageUploading] = useState(false);
-
-   const { toast } = useToast()
 
    async function handleImageUpload(file: File) {
       // display uploaded image on avatar
