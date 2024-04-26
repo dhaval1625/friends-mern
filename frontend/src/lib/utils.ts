@@ -4,6 +4,10 @@ import imageCompression from 'browser-image-compression';
 import { v4 as uuid } from 'uuid';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage } from '@/lib/firebase';
+import { QueryClient } from '@tanstack/react-query';
+import { IPost } from './definitions';
+
+export const queryClient = new QueryClient();
 
 export function cn(...inputs: ClassValue[]) {
    return twMerge(clsx(inputs));
@@ -31,3 +35,11 @@ export const fileHandler = (file: File, cb: Function) => {
    };
    fileReader.readAsDataURL(file);
 };
+
+export const fakeApiRequest = (data: IPost[]): Promise<IPost[]> => {
+   return new Promise((resolve) => {
+      setTimeout(() => {
+         resolve(data);
+      }, 2000);
+   });
+}
