@@ -38,6 +38,7 @@ function CommentForm({ onSubmit }: PropsWithChildren<IProps>) {
             type="submit"
             variant="ghost"
             size="icon-md"
+            disabled={comment.length === 0}
          >
             <GrSend />
          </Button>

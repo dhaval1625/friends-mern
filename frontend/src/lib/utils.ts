@@ -40,6 +40,6 @@ export const fakeApiRequest = (data: IPost[]): Promise<IPost[]> => {
    return new Promise((resolve) => {
       setTimeout(() => {
          resolve(data);
-      }, 2000);
+      }, 500);
    });
 }

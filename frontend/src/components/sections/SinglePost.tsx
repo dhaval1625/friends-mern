@@ -35,8 +35,8 @@ function SinglePost({
             </div>
          </CardHeader>
          <CardContent className="space-y-4">
-            {img && <Image maxWidth={350} src={img} alt={content} />}
             <TextPrimary>{content}</TextPrimary>
+            {img && <Image maxWidth={350} src={img} alt={content} />}
          </CardContent>
          <CardFooter>
             <div className="space-y-3 w-full">
