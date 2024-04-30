@@ -68,54 +68,7 @@ export const DUMMY_POSTS: IPost[] = [
                author: {
                   _id: '853fdbc2-8c31-4c6a-9041-1cca3ba50142',
                   name: 'Alina Markova',
-               }
-            },
-            {
-               author: {
-                  _id: 'b82390d3-7eb4-4fae-8cb4-fd9af22c9990',
-                  name: 'Drashti Solanki',
-               }
-            },
-            {
-               author: {
-                  _id: '853fdbc2-8c31-4c6a-9041-1cca3ba50142',
-                  name: 'Alina Markova',
-               }
-            },
-            {
-               author: {
-                  _id: 'b82390d3-7eb4-4fae-8cb4-fd9af22c9990',
-                  name: 'Drashti Solanki',
-               }
-            },
-            {
-               author: {
-                  _id: '853fdbc2-8c31-4c6a-9041-1cca3ba50142',
-                  name: 'Alina Markova',
-               }
-            },
-            {
-               author: {
-                  _id: 'b82390d3-7eb4-4fae-8cb4-fd9af22c9990',
-                  name: 'Drashti Solanki',
-               }
-            },
-            {
-               author: {
-                  _id: '853fdbc2-8c31-4c6a-9041-1cca3ba50142',
-                  name: 'Alina Markova',
-               }
-            },
-            {
-               author: {
-                  _id: 'b82390d3-7eb4-4fae-8cb4-fd9af22c9990',
-                  name: 'Drashti Solanki',
-               }
-            },
-            {
-               author: {
-                  _id: '853fdbc2-8c31-4c6a-9041-1cca3ba50142',
-                  name: 'Alina Markova',
+                  dp: 'https://firebasestorage.googleapis.com/v0/b/friends-c2500.appspot.com/o/dp-images%2Fbrijesh-reddy-8Um7bQlwBn8-unsplash.jpg?alt=media&token=3840525e-87e4-4db3-8052-8525ee62925e',
                }
             },
             {
