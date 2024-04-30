@@ -12,6 +12,8 @@ import {
    CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import ProfileAvatar from '../ui/ProfileAvatar';
+import { BiLike } from "react-icons/bi";
+import { Button } from '../ui/button';
 
 interface IProps {
    likes: ILikes;
@@ -22,6 +24,9 @@ function PostReactions({ likes, comments }: PropsWithChildren<IProps>) {
    return (
       <Collapsible>
          <div className="flex items-center space-x-4">
+            <button className='text-blue-400 hover:text-blue-600 text-lg'>
+               <BiLike />
+            </button>
             {likes.totalCount > 0 ? (
                <HoverCard openDelay={50}>
                   <HoverCardTrigger>
@@ -36,7 +41,10 @@ function PostReactions({ likes, comments }: PropsWithChildren<IProps>) {
                               key={item.author._id}
                               className="flex items-center space-x-2"
                            >
-                              <ProfileAvatar img={item.author.dp} name={item.author.name} />
+                              <ProfileAvatar
+                                 img={item.author.dp}
+                                 name={item.author.name}
+                              />
                            </div>
                         ))}
                      </div>
@@ -46,22 +54,34 @@ function PostReactions({ likes, comments }: PropsWithChildren<IProps>) {
                <TextLight>{likes.totalCount} Likes</TextLight>
             )}
 
-            <CollapsibleTrigger>
+            {comments.totalCount > 0 ? (
+               <CollapsibleTrigger>
+                  <TextLight>{comments.totalCount} Comments</TextLight>
+               </CollapsibleTrigger>
+            ) : (
                <TextLight>
                   {comments.totalCount} Comments
                </TextLight>
-            </CollapsibleTrigger>
-
-            {/* <TextLight className="ml-4">{comments.totalCount} Comments</TextLight> */}
+            )}
          </div>
-         <CollapsibleContent className='mt-4 space-y-3'>
-            {comments.list?.map((item, idx) => (
-               <div className='border-b border-gray-100 pb-2 last:border-0' key={item.author._id + '-' + idx}>
-                  <ProfileAvatar img={item.author.dp} name={item.author.name} />
-                  <TextLight className='pl-8 font-medium text-neutral-800'>{item.content}</TextLight>
-               </div>
-            ))}
-         </CollapsibleContent>
+         {comments.totalCount > 0 && (
+            <CollapsibleContent className="mt-4 space-y-3">
+               {comments.list?.map((item, idx) => (
+                  <div
+                     className="border-b border-gray-100 pb-2 last:border-0"
+                     key={item.author._id + '-' + idx}
+                  >
+                     <ProfileAvatar
+                        img={item.author.dp}
+                        name={item.author.name}
+                     />
+                     <TextLight className="pl-8 font-medium text-neutral-800">
+                        {item.content}
+                     </TextLight>
+                  </div>
+               ))}
+            </CollapsibleContent>
+         )}
       </Collapsible>
    );
 }
