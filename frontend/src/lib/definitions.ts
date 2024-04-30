@@ -20,23 +20,27 @@ export interface IPostAuthor {
    dp?: string;
 }
 
+export interface ILikes {
+   list?: {
+      author: IPostAuthor;
+   }[];
+   totalCount: number;
+}
+
+export interface IComments {
+   list?: {
+      author: IPostAuthor;
+      content: string;
+   }[];
+   totalCount: number;
+}
+
 export interface IPost {
    _id: string;
    author: IPostAuthor;
    content: string;
    img?: string;
-   likes: {
-      list?: {
-         author: IPostAuthor;
-      }[];
-      totalCount: number;
-   };
-   comments: {
-      list?: {
-         author: IPostAuthor;
-         content: string;
-      }[];
-      totalCount: number;
-   };
+   likes: ILikes;
+   comments: IComments;
    createdAt: Date | string;
 }
