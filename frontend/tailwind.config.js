@@ -21,11 +21,9 @@ module.exports = {
             sans: ['Plus Jakarta Sans', 'sans-serif'],
          },
          colors: {
-            neutral: {
-               900: '#312941',
-               950: '#2b282e',
-            },
             primary: {
+               DEFAULT: '#312941',
+               800: '#2b282e',
                100: '#5e39a7',
                200: '#652cd6'
             }

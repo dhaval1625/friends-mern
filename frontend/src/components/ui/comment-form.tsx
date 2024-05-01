@@ -34,7 +34,7 @@ function CommentForm({ onSubmit }: PropsWithChildren<IProps>) {
             onChange={(e) => setComment(e.target.value)}
          />
          <Button
-            className="absolute bottom-1 right-2 text-neutral-900"
+            className="absolute bottom-1 right-2 text-primary"
             type="submit"
             variant="ghost"
             size="icon-md"
