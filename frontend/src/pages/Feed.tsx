@@ -3,6 +3,7 @@ import { DUMMY_POSTS } from '@/lib/dummy-data';
 import { useQuery } from '@tanstack/react-query';
 import SinglePost from '@/components/sections/SinglePost';
 import { WidthController } from '@/components/ui/wrapper';
+import NewPost from '@/components/sections/NewPost';
 
 function Feed() {
    const { data, isPending, error } = useQuery({
@@ -20,6 +21,7 @@ function Feed() {
 
    return (
       <WidthController maxWidth={500}>
+         <NewPost />
          <div className="mt-8 space-y-4 pb-10">
             {data.map((item) => (
                <SinglePost key={item._id} post={item} />

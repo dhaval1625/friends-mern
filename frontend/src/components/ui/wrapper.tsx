@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { PropsWithChildren } from 'react';
 
 interface ImageProps {
-   maxWidth: number;
+   maxWidth?: number;
    src: string;
    alt: string;
    wrapperClass?: string;
@@ -22,7 +22,7 @@ export function Image({
    wrapperClass,
    imgClass,
 }: PropsWithChildren<ImageProps>) {
-   const maxWidthPx = `${maxWidth.toString()}px`;
+   const maxWidthPx = maxWidth ? `${maxWidth.toString()}px` : 'none';
 
    return (
       <div style={{maxWidth: maxWidthPx}} className={cn('overflow-hidden flex', wrapperClass)}>
