@@ -44,8 +44,6 @@ function Navbar() {
                                  isActive
                                     ? 'text-2xl text-primary-100 transition hover:text-primary-200'
                                     : 'text-2xl text-gray-600 transition hover:text-primary-200'
-                                    // ? 'text-2xl text-indigo-600 transition hover:text-indigo-800'
-                                    // : 'text-2xl text-gray-600 transition hover:text-indigo-800'
                               }
                               to={item.path}
                            >
@@ -53,6 +51,11 @@ function Navbar() {
                            </NavLink>
                         </li>
                      ))}
+                     <li>
+                        <button className='flex text-2xl text-gray-600 transition hover:text-primary-200'>
+                           <IoMdNotificationsOutline />
+                        </button>
+                     </li>
                   </ul>
                </nav>
             </div>
