@@ -25,6 +25,10 @@ module.exports = {
                900: '#312941',
                950: '#2b282e',
             },
+            primary: {
+               100: '#5e39a7',
+               200: '#652cd6'
+            }
          },
          keyframes: {
             'accordion-down': {

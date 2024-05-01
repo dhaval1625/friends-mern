@@ -5,3 +5,8 @@
 body {
    @apply font-sans text-gray-800;
 }
+
+.app-navbar {
+   backdrop-filter: blur(5px);
+   z-index: 200;
+}
