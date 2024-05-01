@@ -9,7 +9,7 @@ export const DUMMY_POSTS: IPost[] = [
       },
       content: 'I am enjoying this app a lot!',
       _id: 'c634f507-64ac-47f4-9678-7f4c280e6b97fa',
-      createdAt: '2023-12-17T06:47:48.205Z',
+      createdAt: '2024-04-17T06:47:48.205Z',
       likes: {
          list: undefined,
          totalCount: 0,

@@ -6,6 +6,8 @@ import TextPrimary from '../Typography/TextPrimary';
 import CommentForm from '../ui/comment-form';
 import PostReactions from './PostReactions';
 import ProfileAvatar from '../ui/ProfileAvatar';
+import moment from "moment/moment";
+import TextLight from '../Typography/TextLight';
 
 interface PostProps {
    post: IPost;
@@ -18,10 +20,14 @@ function SinglePost({
    const handleCommentChange = (comment: string) => {
       console.log(comment);
    };
+
+   // Calculate how old is this post.
+  const timePassed = moment(createdAt).fromNow();
    return (
       <Card>
-         <CardHeader>
+         <CardHeader className='flex justify-between items-start flex-row'>
             <ProfileAvatar img={author.dp} name={author.name} size='lg' />
+            <TextLight className='text-[10px]'>{timePassed}</TextLight>
          </CardHeader>
          <CardContent className="space-y-4">
             <TextPrimary>{content}</TextPrimary>
