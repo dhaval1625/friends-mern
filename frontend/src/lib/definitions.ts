@@ -14,6 +14,8 @@ export interface JSXCommonProps {
 
 export type UtilityElementProps = PropsWithChildren<JSXCommonProps>;
 
+export type SizeVariant = 'default' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+
 export interface IPostAuthor {
    _id: string;
    name: string;

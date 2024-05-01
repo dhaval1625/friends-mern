@@ -12,8 +12,7 @@ import {
    CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import ProfileAvatar from '../ui/ProfileAvatar';
-import { BiLike } from "react-icons/bi";
-import { Button } from '../ui/button';
+import LikeButton from '../ui/LikeButton';
 
 interface IProps {
    likes: ILikes;
@@ -24,9 +23,9 @@ function PostReactions({ likes, comments }: PropsWithChildren<IProps>) {
    return (
       <Collapsible>
          <div className="flex items-center space-x-4">
-            <button className='text-blue-400 hover:text-blue-600 text-lg'>
-               <BiLike />
-            </button>
+            <LikeButton />
+
+            {/* if there are likes then show hover card */}
             {likes.totalCount > 0 ? (
                <HoverCard openDelay={50}>
                   <HoverCardTrigger>
@@ -51,17 +50,17 @@ function PostReactions({ likes, comments }: PropsWithChildren<IProps>) {
                   </HoverCardContent>
                </HoverCard>
             ) : (
+               // else show 0 likes text only
                <TextLight>{likes.totalCount} Likes</TextLight>
             )}
 
+            {/* if there are comments show comments trigger button else show text only */}
             {comments.totalCount > 0 ? (
                <CollapsibleTrigger>
                   <TextLight>{comments.totalCount} Comments</TextLight>
                </CollapsibleTrigger>
             ) : (
-               <TextLight>
-                  {comments.totalCount} Comments
-               </TextLight>
+               <TextLight>{comments.totalCount} Comments</TextLight>
             )}
          </div>
          {comments.totalCount > 0 && (

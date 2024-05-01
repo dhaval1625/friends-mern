@@ -1,14 +1,11 @@
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 import { IPost } from '@/lib/definitions';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { BiUser } from 'react-icons/bi';
 import { Image } from '../ui/wrapper';
-import TitlePrimary from '../Typography/TitlePrimary';
 import TextPrimary from '../Typography/TextPrimary';
-import { useState } from 'react';
 
 import CommentForm from '../ui/comment-form';
 import PostReactions from './PostReactions';
+import ProfileAvatar from '../ui/ProfileAvatar';
 
 interface PostProps {
    post: IPost;
@@ -24,15 +21,7 @@ function SinglePost({
    return (
       <Card>
          <CardHeader>
-            <div className="flex items-center space-x-2">
-               <Avatar>
-                  <AvatarImage src={author.dp} />
-                  <AvatarFallback className="text-neutral-500 md:text-2xl text-lg">
-                     <BiUser />
-                  </AvatarFallback>
-               </Avatar>
-               <TitlePrimary>{author.name}</TitlePrimary>
-            </div>
+            <ProfileAvatar img={author.dp} name={author.name} size='lg' />
          </CardHeader>
          <CardContent className="space-y-4">
             <TextPrimary>{content}</TextPrimary>
