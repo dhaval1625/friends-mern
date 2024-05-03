@@ -3,26 +3,31 @@ import { Button } from '../ui/button';
 import { Card, CardContent } from '../ui/card';
 import { cn, fileHandler, uploadImageOnCloud } from '@/lib/utils';
 import { FileUploader } from 'react-drag-drop-files';
-import { FileInput } from '../ui/input';
 import { Image } from '../ui/wrapper';
 import TextLight from '../Typography/TextLight';
 import { ACCEPTED_IMAGE_FILE_TYPES } from '@/lib/config';
 import { toast } from '../ui/use-toast';
+import { LoadingMessage } from '../ui/loading';
 
 function NewPost() {
    const [isFocus, setIsFocus] = useState(false);
    const [showForm, setShowForm] = useState(false);
-   const [imgURL, setImgURL] = useState<null | string>(null);
    const [uploadedImg, setUploadedImg] = useState<string>('');
+   const [isImgUploading, setIsImgUploading] = useState(false);
+
+   // to send in backend
+   const [postContent, setPostContent] = useState('');
+   const [imgURL, setImgURL] = useState<null | string>(null);
 
    async function imageUploadHandler(file: File) {
-      console.log(file, 'uploaded file')
       // display uploaded image on avatar
       fileHandler(file, (url: string) => setUploadedImg(url));
 
       // get url of uploaded image
-      // const url = await uploadImageOnCloud(file);
-      // setImgURL(url);
+      setIsImgUploading(true);
+      const url = await uploadImageOnCloud(file);
+      setIsImgUploading(false);
+      setImgURL(url);
    }
 
    return (
@@ -45,32 +50,44 @@ function NewPost() {
                         id="post-content"
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
+                        value={postContent}
+                        onChange={(e) => setPostContent(e.target.value)}
                         className="w-full resize-none focus-visible:outline-none text-sm"
                         rows={5}
                         placeholder="What's on your mind..."
                      ></textarea>
                      <div className="flex items-end justify-between">
-                        <FileUploader
-                           name='post-img'
-                           // types={ACCEPTED_IMAGE_FILE_TYPES}
-                           fileOrFiles={uploadedImg}
-                           handleChange={imageUploadHandler}
-                           onSizeError={(err: any) => console.log(err)}
-                           onTypeError={(err: any) => toast({description: err, variant: 'destructive'})}
-                        >
-                           <div className="flex items-center justify-center border rounded-md w-24 h-24">
-                              {uploadedImg ? (
-                                 <Image
-                                    src={uploadedImg}
-                                    alt="uploaded image"
-                                 />
-                              ) : (
-                                 <TextLight>Upload image</TextLight>
-                              )}
-                           </div>
-                        </FileUploader>
-                        {/* <FileInput id='post-img' handler={imageUploadHandler} /> */}
-                        <Button>Send</Button>
+                        <div className="space-y-3">
+                           <FileUploader
+                              types={ACCEPTED_IMAGE_FILE_TYPES}
+                              handleChange={imageUploadHandler}
+                              onTypeError={(err: any) =>
+                                 toast({
+                                    description: err,
+                                    variant: 'destructive',
+                                 })
+                              }
+                           >
+                              <div
+                                 className={cn(
+                                    'flex items-center justify-center border rounded-md w-24 h-24',
+                                    'transition cursor-pointer hover:bg-neutral-200'
+                                 )}
+                              >
+                                 {uploadedImg ? (
+                                    <Image
+                                       wrapperClass="max-h-full"
+                                       src={uploadedImg}
+                                       alt="uploaded image"
+                                    />
+                                 ) : (
+                                    <TextLight>Upload image</TextLight>
+                                 )}
+                              </div>
+                           </FileUploader>
+                           {isImgUploading && <LoadingMessage message='Uploading image' />}
+                        </div>
+                        <Button disabled={postContent.length === 0}>Send</Button>
                      </div>
                   </form>
                </CardContent>

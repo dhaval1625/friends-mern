@@ -27,7 +27,7 @@ export function Image({
    return (
       <div style={{maxWidth: maxWidthPx}} className={cn('overflow-hidden flex', wrapperClass)}>
          <img
-            className={cn('w-full max-w-full', imgClass)}
+            className={cn('w-full max-w-full object-cover', imgClass)}
             src={src}
             alt={alt}
          />
