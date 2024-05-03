@@ -2,10 +2,11 @@ import { IComments, ILikes } from '@/lib/definitions';
 import TextLight from '../Typography/TextLight';
 import { PropsWithChildren } from 'react';
 import {
-   HoverCard,
-   HoverCardContent,
-   HoverCardTrigger,
-} from '@/components/ui/hover-card';
+   DropdownMenu,
+   DropdownMenuContent,
+   DropdownMenuItem,
+   DropdownMenuTrigger,
+ } from "@/components/ui/dropdown-menu";
 import {
    Collapsible,
    CollapsibleContent,
@@ -27,16 +28,16 @@ function PostReactions({ likes, comments }: PropsWithChildren<IProps>) {
 
             {/* if there are likes then show hover card */}
             {likes.totalCount > 0 ? (
-               <HoverCard openDelay={50}>
-                  <HoverCardTrigger>
+               <DropdownMenu>
+                  <DropdownMenuTrigger className='outline-none'>
                      <TextLight className="cursor-pointer">
                         {likes.totalCount} Likes
                      </TextLight>
-                  </HoverCardTrigger>
-                  <HoverCardContent className="max-h-[300px] overflow-auto">
-                     <div className="space-y-3">
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="max-h-[300px] overflow-auto">
+                     <div>
                         {likes.list?.map((item) => (
-                           <div
+                           <DropdownMenuItem
                               key={item.author._id}
                               className="flex items-center space-x-2"
                            >
@@ -44,11 +45,11 @@ function PostReactions({ likes, comments }: PropsWithChildren<IProps>) {
                                  img={item.author.dp}
                                  name={item.author.name}
                               />
-                           </div>
+                           </DropdownMenuItem>
                         ))}
                      </div>
-                  </HoverCardContent>
-               </HoverCard>
+                  </DropdownMenuContent>
+               </DropdownMenu>
             ) : (
                // else show 0 likes text only
                <TextLight>{likes.totalCount} Likes</TextLight>

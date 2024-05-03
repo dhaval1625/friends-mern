@@ -36,7 +36,7 @@ function Navbar() {
                   <Image src={Logo} maxWidth={50} alt="logo" />
                </Link>
                <nav className="flex">
-                  <ul className="flex items-center space-x-6">
+                  <ul className="flex items-center space-x-4 sm:space-x-6">
                      {routes.map((item) => (
                         <li key={item.id}>
                            <NavLink

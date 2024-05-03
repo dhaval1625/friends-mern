@@ -6,8 +6,10 @@ function MainLayout() {
    return (
       <Fragment>
          <Navbar />
-         <main className='pt-[100px]'>
-            <Outlet />
+         <main className="pt-[100px]">
+            <div className="container">
+               <Outlet />
+            </div>
          </main>
       </Fragment>
    );
