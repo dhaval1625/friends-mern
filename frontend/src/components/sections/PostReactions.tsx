@@ -6,7 +6,7 @@ import {
    DropdownMenuContent,
    DropdownMenuItem,
    DropdownMenuTrigger,
- } from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
 import {
    Collapsible,
    CollapsibleContent,
@@ -14,6 +14,8 @@ import {
 } from '@/components/ui/collapsible';
 import ProfileAvatar from '../ui/ProfileAvatar';
 import LikeButton from '../ui/LikeButton';
+import TextPrimary from '../Typography/TextPrimary';
+import TextSecondary from '../Typography/TextSecondary';
 
 interface IProps {
    likes: ILikes;
@@ -29,13 +31,16 @@ function PostReactions({ likes, comments }: PropsWithChildren<IProps>) {
             {/* if there are likes then show hover card */}
             {likes.totalCount > 0 ? (
                <DropdownMenu>
-                  <DropdownMenuTrigger className='outline-none'>
+                  <DropdownMenuTrigger className="outline-none">
                      <TextLight className="cursor-pointer">
                         {likes.totalCount} Likes
                      </TextLight>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="max-h-[300px] overflow-auto">
                      <div>
+                        <div className="px-3 py-2">
+                           <TextSecondary>Liked by</TextSecondary>
+                        </div>
                         {likes.list?.map((item) => (
                            <DropdownMenuItem
                               key={item.author._id}
