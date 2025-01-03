@@ -35,7 +35,7 @@ export function Image({
    );
 }
 
-export function WidthController({
+export function Container({
    maxWidth,
    className,
    children,
