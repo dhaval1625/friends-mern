@@ -1,9 +1,9 @@
 import SinglePost from '@/components/sections/SinglePost';
 import { Container } from '@/components/ui/wrapper';
 import NewPost from '@/components/sections/NewPost';
+import { IPost } from '@/lib/definitions';
 
-function Feed({ data } : any) {
-
+function Feed({ data }: { data: IPost[] }) {
    return (
       <Container maxWidth={500}>
          <NewPost />
