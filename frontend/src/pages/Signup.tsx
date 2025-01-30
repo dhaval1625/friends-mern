@@ -1,3 +1,4 @@
+'use client'
 import DPForm from '@/components/sections/DPForm';
 import SignupForm from '@/components/sections/SignupForm';
 import { SignupData } from '@/lib/definitions';
@@ -13,8 +14,8 @@ function Signup() {
 
    return (
       <Fragment>
-         {curStep === 0 && <SignupForm onSubmit={signupHandler} />}
-         {curStep === 1 && <DPForm />}
+         {curStep === 1 && <SignupForm onSubmit={signupHandler} />}
+         {curStep === 2 && <DPForm />}
       </Fragment>
    );
 }

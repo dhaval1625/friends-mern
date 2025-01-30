@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+'use client'
+// import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
    Card,
@@ -18,6 +20,7 @@ import {
    FormLabel,
    FormMessage,
 } from '@/components/ui/form';
+import Loading from '@/app/loading';
 
 function LoginForm() {
    const formSchema = z.object({
@@ -41,6 +44,8 @@ function LoginForm() {
    function onSubmit(values: z.infer<typeof formSchema>) {
       console.log(values);
    }
+
+   // return <Loading />
    return (
       <Card className="max-w-sm w-full">
          <CardHeader>
@@ -95,7 +100,7 @@ function LoginForm() {
             </Form>
             <div className="mt-4 text-center text-sm">
                Don't have an account?{' '}
-               <Link to="/auth/signup" className="underline">
+               <Link href="/auth/signup" className="underline">
                   Sign up
                </Link>
             </div>

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
    Card,
@@ -21,6 +21,7 @@ import {
 } from '@/components/ui/form';
 import { SIGNUP_FORM_INITIAL_VALUES, SIGNUP_FORM_SCHEMA } from '@/lib/config';
 import { SignupData } from '@/lib/definitions';
+import Link from 'next/link';
 
 interface SignupProps {
    onSubmit: (data: SignupData) => void;
@@ -93,7 +94,7 @@ function SignupForm({ onSubmit }: SignupProps) {
                               <Input
                                  placeholder="john@doe.com"
                                  type="email"
-                                 autoComplete='username'
+                                 autoComplete="username"
                                  {...field}
                               />
                            </FormControl>
@@ -129,7 +130,7 @@ function SignupForm({ onSubmit }: SignupProps) {
                               <Input
                                  placeholder="Confirm password"
                                  type="password"
-                                 autoComplete='new-password'
+                                 autoComplete="new-password"
                                  {...field}
                               />
                            </FormControl>
@@ -144,7 +145,7 @@ function SignupForm({ onSubmit }: SignupProps) {
             </Form>
             <div className="mt-4 text-center text-sm">
                Already have an account?{' '}
-               <Link to="/auth/login" className="underline">
+               <Link href="/auth/login" className="underline">
                   Sign in
                </Link>
             </div>
