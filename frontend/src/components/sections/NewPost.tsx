@@ -4,7 +4,7 @@ import { Button } from '../ui/button';
 import { Card, CardContent } from '../ui/card';
 import { cn, fileHandler, uploadImageOnCloud } from '@/lib/utils';
 import { FileUploader } from 'react-drag-drop-files';
-import { Image } from '../ui/wrapper';
+import { ResponsiveImage } from '../ui/wrapper';
 import TextLight from '../Typography/TextLight';
 import { ACCEPTED_IMAGE_FILE_TYPES } from '@/lib/config';
 import { toast } from '../ui/use-toast';
@@ -76,10 +76,12 @@ function NewPost() {
                                  )}
                               >
                                  {uploadedImg ? (
-                                    <Image
+                                    <ResponsiveImage
                                        wrapperClass="max-h-full"
                                        src={uploadedImg}
                                        alt="uploaded image"
+                                       width={24}
+                                       height={24}
                                     />
                                  ) : (
                                     <TextLight>Upload image</TextLight>

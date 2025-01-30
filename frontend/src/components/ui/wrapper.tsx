@@ -1,7 +1,8 @@
 import { cn } from '@/lib/utils';
+import Image, { ImageProps as NextImageProps } from 'next/image';
 import { PropsWithChildren } from 'react';
 
-interface ImageProps {
+interface ImageProps extends NextImageProps {
    maxWidth?: number;
    src: string;
    alt: string;
@@ -15,21 +16,30 @@ interface WidthProps {
    centered?: boolean;
 }
 
-export function Image({
+export function ResponsiveImage({
    maxWidth,
    src,
    alt,
    wrapperClass,
    imgClass,
+   width,
+   height,
+   ...imgProps
 }: PropsWithChildren<ImageProps>) {
    const maxWidthPx = maxWidth ? `${maxWidth.toString()}px` : 'none';
 
    return (
-      <div style={{maxWidth: maxWidthPx}} className={cn('overflow-hidden flex', wrapperClass)}>
-         <img
-            className={cn('w-full max-w-full object-cover', imgClass)}
+      <div
+         style={{ maxWidth: maxWidthPx }}
+         className={cn('overflow-hidden flex', wrapperClass)}
+      >
+         <Image
+            className={cn('w-full max-w-full object-cover h-auto', imgClass)}
             src={src}
             alt={alt}
+            width={width}
+            height={height}
+            {...imgProps}
          />
       </div>
    );
