@@ -1,3 +1,4 @@
+'use client'
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 import { IPost } from '@/lib/definitions';
 import { Image } from '../ui/wrapper';

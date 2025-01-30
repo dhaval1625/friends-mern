@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react';
 import { BiLike, BiSolidLike } from 'react-icons/bi';
 
